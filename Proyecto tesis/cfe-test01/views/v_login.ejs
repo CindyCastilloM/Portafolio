@@ -1,0 +1,114 @@
+<%- include ('template/t_cabeceralogin', {tituloweb: 'Iniciar sesión' }); %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="content-type" content="text/html;&#32;charset=utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,&#32;IE=10,&#32;IE=9" />
+
+    <meta name="viewport" content="width=device-width,&#32;initial-scale=1" /><link id="ctl00_favicon" rel="shortcut&#32;icon" href="Recursos/img/favico.png" type="image/vnd.microsoft.icon" /><link rel="stylesheet" href="https://www.cfe.mx/cdn/2019/assets/css/cfe.css" />
+
+    <style>
+        .field-icon {
+            float: right;
+            margin-right: 4px;
+            margin-top: -28px;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="stretched side-push-panel" data-loader="7" data-loader-color="#008E5A" data-loader-timeout="600">
+    <form name="aspnetForm" method="post" action="/login" id="aspnetForm" style="padding:&#32;0;&#32;margin:&#32;0;">
+    </form>
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="rqLm+o++lwyC+CtdJIec1nRWLnD1bB2lEpQRA0jS9dWQvpfyCjxWFzpA7vtelY0DYETYDz4H5oGYXKc191nGzxATOm8=" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="55848934" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="hdQG3pjdfvoRrrmIb0KkQUgvDQNIikY4R7HfOwhaf2SBzkgomN9tz1K3JIHQn0DDN0K/9+t2/g2CYkOplXyWxqRqxXGtQw2wNFStTd8sJNSAWgJFJVtQiDOvDJ3umB7U75+Bw4+tWmPc9pmupfMk4VlbJJE=" />
+</div>
+        <!-- Document Wrapper
+	============================================= -->
+        <div id="wrapper" class="clearfix">
+            <!-- Content
+		============================================= -->
+
+            <div class="content-wrap nopadding">
+                <div class="nopadding nomargin" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: url('https://cdncfe.cfe.mx/cdn/2019/assets/images/login-bg.jpg') center center no-repeat; background-size: cover;"></div>
+                <div class="nobg full-screen nopadding nomargin">
+
+                    
+
+    <div class="container-fluid clearfix">
+
+        <div class="accordion accordion-lg divcenter nobottommargin clearfix" style="max-width: 450px; padding: 20px 40px; background-color: rgba(255,255,255,0.93)">
+
+            <div class="center">
+                    <img src="img/logocfe.png" />
+                </a>
+            </div>
+
+            <div class="acctitle"><i class="acc-closed icon-lock"></i><i class="acc-open icon-unlock-alt"></i>Usuarios registrados</div>
+            <div class="acc_content clearfix">
+                <div id="login-form" class="nobottommargin">
+                    <div class="col_full">
+                        <label for="txtUsuario">RPE:</label>
+                        <input form="aspnetForm" name="rpe" maxlength="100" id="ctl00_MainContent_txtUsuario" type="text" class="form-control" required="" />
+                    </div>
+
+                    <div class="col_full">
+                        <label for="txtPassword">Contraseña:</label>
+                        <input form="aspnetForm" name="password" maxlength="100" id="ctl00_MainContent_txtPassword" type="password" class="form-control" required="" />
+                        <span toggle="#ctl00_MainContent_txtPassword" class="icon-eye-open field-icon toggle-password"></span>
+                    </div>
+                   <center><input form="aspnetForm" type="submit" name="ctl00$MainContent$btnIngresar" value="Ingresar" id="ctl00_MainContent_btnIngresar" class="button button-rounded nomargin"></center>
+                </div>
+            </div>
+
+
+
+            <div class="center">
+                    <img src="https://cdncfe.cfe.mx/cdn/2019/assets/images/logo-ssb.png" />
+                </a>
+            </div>
+        </div>
+
+    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Go To Top
+	============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+	============================================= -->
+    <script src="https://www.cfe.mx/cdn/jquery/3.5.1/jquery-3.5.1.min.js"></script>
+    <script src="https://www.cfe.mx/cdn/2019/assets/js/plugins.js"></script>
+
+    <!-- Footer Scripts
+	============================================= -->
+    <script src="https://www.cfe.mx/cdn/2019/assets/js/functions.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        $('#myModal').modal('show')
+    </script>
+    <script type="text/javascript">
+        $(".toggle-password").click(function () {
+
+            $(this).toggleClass("icon-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    </script>
+</body>
+</html>
+

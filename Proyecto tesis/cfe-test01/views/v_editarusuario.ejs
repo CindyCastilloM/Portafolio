@@ -1,0 +1,134 @@
+<%- include ('template/t_cabecera', {tituloweb: 'Editar usuario' }); %>
+<body>
+    <div class="container">
+        <br><h1>Editar usuario</h1><br>
+
+        
+        <% if (error) { %>
+            <%= mensaje %>
+                <br>
+                <a href="/adminusuario" class="btn btn-dark btn-block my-2"> Volver </a>
+                <% } %>
+
+                    <% if (!error) { %>
+                        <div class="form-group">
+                            <form class="frm-editar" data-id="<%= usuario.id %>">
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label col-form-label-sm"
+                                        for="efcs1 btn btn-danger dropdown-toggle">RPE:</label>
+                                    <input type="text" value="<%= usuario.rpe %>" placeholder="Ingrese el RPE"
+                                    class="col-sm-2 col-form-label col-form-label-sm my-2" name="rpe">
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label col-form-label-sm my-2"
+                                        for="efcs1 btn btn-danger dropdown-toggle">Rol:</label>
+                                    <select name="rol" class="col-sm-2 col-form-label col-form-label-sm my-2"id="efcs1">
+                                        <% arrayrol.forEach(earray=> { %>
+                                            <option>
+                                                <%= earray.nombre %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label col-form-label-sm"
+                                        for="efcs1 btn btn-danger dropdown-toggle">Email:</label>
+                                    <input type="text" value="<%= usuario.email %>" placeholder="Ingrese el Email"
+                                    class="col-sm-2 col-form-label col-form-label-sm my-2" name="email">
+                                </div>
+
+
+                                
+                                <button class="btn btn-success btn-sm" type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-pen" viewBox="0 0 16 16">
+                                        <path
+                                            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                    </svg>Guardar
+                                </button>
+                                
+                                <button class="btn btn-danger btn-sm btn-eliminar" data-id="<%= usuario.id %>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                        <path fill-rule="evenodd"
+                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>Borrar
+                                </button>
+                                <a class="btn btn-danger btn-sm " href="/adminusuario"
+                                    class="btn btn-danger btn-block my-2"> Cancelar </a>
+
+                            </form>
+
+                            <% } %>
+                        </div>
+
+                        <%- include("template/t_footer") %>
+
+<script>
+// onclick vs addEventListener
+// https://stackoverflow.com/questions/6348494/addeventlistener-vs-onclick#:~:text=Essentially%20onclick%20is%20a%20HTML,(using%20this%20for%20example).
+
+    const btnEliminar = document.querySelector('.btn-eliminar');
+    btnEliminar.addEventListener('click', async () => {
+
+        try {
+            // https://developer.mozilla.org/es/docs/Web/API/HTMLElement/dataset
+            const data = await fetch(`/adminusuario/${btnEliminar.dataset.id}`, {
+                method: 'delete'
+            });
+
+            const res = await data.json();
+
+            if (res.estado) {
+                window.location.href = '/adminusuario';
+            } else {
+                console.log(res);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+
+    const formEditar = document.querySelector('.frm-editar');
+    formEditar.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        Swal.fire(
+        '¡Usuario actualizado!',
+        'Clic en el botón para continuar',
+        'success'
+        );
+
+        
+        const rpe = formEditar.elements['rpe'].value;
+        const rol = formEditar.elements['rol'].value;
+        const email = formEditar.elements['email'].value;
+
+        const id = formEditar.dataset.id;
+
+        const data = await fetch(`/adminusuario/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ rpe, rol, email })
+        });
+
+        const res = await data.json();
+
+        if (res.estado) {
+            window.location.href = '/adminusuario';
+        } else {
+            console.log(res);
+        }
+    });
+
+</script>

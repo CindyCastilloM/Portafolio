@@ -1,0 +1,64 @@
+<%- include ('template/t_cabecera', {tituloweb: 'Crear usuario' }); %>
+<body>
+    <div class="container">
+        <br><h1>Crear usuario</h1><br>
+     
+        <form action="/adminusuario" class="my-2" method="POST">
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs2 btn btn-danger dropdown-toggle">RPE:</label>
+                <input type="text" id="efcs2" class="col-sm-2 col-form-label col-form-label-sm my-2" placeholder="Ingrese el RPE" name="rpe" required>
+            </div>
+                
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs2 btn btn-danger dropdown-toggle">Contraseña:</label>
+                <input type="password" id="efcs2" class="col-sm-2 col-form-label col-form-label-sm my-2" placeholder="Ingrese la Contraseña"name="password" required>
+            </div>
+           
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs1 btn btn-danger dropdown-toggle">Rol:</label>
+                <select name="rol" class="col-sm-2 col-form-label col-form-label-sm my-2" id="efcs1" required>
+                    <% arrayrol.forEach(earray=> { %>   
+                        <option><%= earray.nombre %></option>
+                    <% }); %>  
+                </select>
+            </div>
+        
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs2 btn btn-danger dropdown-toggle">Email:</label>
+                <input type="text" id="efcs2" class="col-sm-2 col-form-label col-form-label-sm my-2"placeholder="Ingrese el Email" name="email" required>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">
+                Guardar
+            </button>
+            
+            <a href="/adminusuario" class="btn btn-danger btn-block my-2"> Cancelar </a>
+
+        </form>
+
+        </div>
+        <script>
+            const btnEliminar = document.querySelector('.btn-success');
+            btnEliminar.addEventListener('click', async () => {
+                Swal.fire({
+  title: '¿Seguro que desea guardar los cambios?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: `Guardar`,
+  denyButtonText: `No guardar`,
+  cancelButtonText: "Cancelar",
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    Swal.fire('¡Guardados!', '', 'success')
+  } else if (result.isDenied) {
+    Swal.fire('Los datos no han sido guardados', '', 'info')
+    window.location.href='/empleado';
+  }
+})
+            });
+        
+        </script>
+
+<%- include('template/t_footer'); %>

@@ -1,0 +1,6 @@
+npm init -y
+npm i express --save
+
+npm i dotenv --save
+npm i mongoose --save
+npm i ejs --save

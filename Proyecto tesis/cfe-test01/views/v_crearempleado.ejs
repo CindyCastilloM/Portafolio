@@ -1,0 +1,81 @@
+<%- include ('template/t_cabecera', {tituloweb: 'Crear empleado' }); %>
+    <div class="container">
+        <br><h1>Crear nuevo empleado</h1><br>
+        <form action="/empleado" class="my-2" method="POST">
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs1 btn btn-danger dropdown-toggle">Centro de Trabajo:</label>
+                <select name="centrot" class="col-sm-2 col-form-label col-form-label-sm my-2" id="efcs1" required>
+                    <% arrayzona.forEach(earray=> { %>   
+                        <option><%= earray.nombre %></option>
+                    <% }); %>  
+                </select>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs2 btn btn-danger dropdown-toggle">Proceso:</label>
+                <input type="text" id="efcs2" class="col-sm-2 col-form-label col-form-label-sm my-2"placeholder="Ingrese el Proceso" name="proceso" required>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs3 btn btn-danger dropdown-toggle">Clave de jefatura:</label>
+                <input type="text" id="efcs3" class="col-sm-2 col-form-label col-form-label-sm my-2"placeholder="Ingrese la Clave de Jefatura" name="cvjefatura"required>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs4 btn btn-danger dropdown-toggle">Jefatura:</label>
+                <input type="text" id="efcs4" class="col-sm-2 col-form-label col-form-label-sm my-2"placeholder="Ingrese la Jefatura" name="jefatura"required>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs5 btn btn-danger dropdown-toggle">Jefe:</label>
+                <input type="text" id="efcs5" class="col-sm-2 col-form-label col-form-label-sm my-2" placeholder="Ingrese el Nombre del Jefe"name="jefe"required>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs6 btn btn-danger dropdown-toggle">RPE:</label>
+                <input type="text" id="efcs6" class="col-sm-2 col-form-label col-form-label-sm my-2"placeholder="Ingrese el RPE" name="rpe"required>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs7 btn btn-danger dropdown-toggle">Nivel de autoridad:</label>
+                <input type="text" id="efcs7" class="col-sm-2 col-form-label col-form-label-sm my-2"placeholder="Ingrese el Nivel de Autoridad" name="nlvautoridad"required>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="efcs8 btn btn-danger dropdown-toggle">Correo:</label>
+                <input type="text" id="efcs8" class="col-sm-2 col-form-label col-form-label-sm my-2"placeholder="Ingrese el Correo" name="correo"required>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">
+                Agregar
+            </button>
+            <a href="/empleado" class="btn btn-danger btn-block my-2"> Cancelar </a>
+
+        </form>
+    </div>
+
+    <script>
+        
+        const btnAgregar = document.querySelector('.btn-success');
+        btnAgregar.addEventListener('click', async () => {
+            
+            Swal.fire({
+  title: '¿Seguro que desea guardar los cambios?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: `Guardar`,
+  denyButtonText: `No guardar`,
+  cancelButtonText: "Cancelar",
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    Swal.fire('¡Guardados!', '', 'success')
+  } else if (result.isDenied) {
+    Swal.fire('Los datos no han sido guardados', '', 'info')
+    window.location.href='/empleado';
+  }
+})
+        });
+    
+    </script>
+    <%- include('template/t_footer'); %>
